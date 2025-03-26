@@ -13,7 +13,7 @@ The ESP32 board is connected to the PC's power button pins through a MOSFET modu
 
 The MOSFET module is connected to GPIO 3 on the ESP32. For detailed wiring instructions and pin configuration, see the [firmware documentation](firmware/README.md).
 
-![Hardware Setup](hardware.jpg)
+![Hardware Setup](web-interface/public/hardware.jpg)
 
 ## Project Structure
 The project is split into three main components:
@@ -22,6 +22,8 @@ The project is split into three main components:
    - Next.js-based web application for controlling the PC
    - Provides a user-friendly interface for power management
    - Handles authentication and user interactions
+
+   ![Web Interface](screenshot.png)
 
 2. **ESP32 Firmware** (`/esp32`)
    - Microcontroller code that interfaces with the PC's power pins

@@ -26,18 +26,30 @@ export async function getHello() {
 
 export async function pingPc() {
   try {
+    console.log('Pinging PC at:', targetPcPingUrl)
     const res = await axios.get(targetPcPingUrl)
-    return res.data === 'pong'
+    const isOnline = res.data === 'pong'
+    console.log('PC ping result:', isOnline)
+    return isOnline
   } catch (err) {
+    // @ts-ignore
+    console.log('PC ping failed:', err?.response?.data || err?.message)
     return false
   }
 }
 
 export async function pingEsp32Booter() {
+  const pingUrl = `${esp32BooterBaseUrl}/ping`
+  console.log('Pinging ESP32 at:', pingUrl)
+
   try {
-    const res = await axios.get(`${esp32BooterBaseUrl}/ping`)
-    return res.data === 'pong'
+    const res = await axios.get(pingUrl)
+    const isOnline = res.data === 'pong'
+    console.log('ESP32 ping result:', isOnline)
+    return isOnline
   } catch (err) {
+    // @ts-ignore
+    console.log('ESP32 ping failed:', err?.response?.data || err?.message)
     return false
   }
 } 

@@ -32,8 +32,6 @@ export const decodeJwtToken = (token: string): JwtTokenPayload => {
 }
 
 export const parseBearerToJwt = (bearer: string | any): string => {
-  console.log('bearer', bearer)
-
   if (!bearer || typeof bearer !== 'string')
     throw new Error('Invalid token format')
 
