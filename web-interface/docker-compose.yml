@@ -1,0 +1,13 @@
+services:
+  net-control-web-interface:
+    build: .
+    ports:
+      - "9064:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_BASE_URL=${DOCKER_COMPOSE_NEXT_PUBLIC_BASE_URL}
+      - JWT_SECRET=${JWT_SECRET}
+      - ESP32_BOOTER_BASE_URL=${ESP32_BOOTER_BASE_URL}
+      - TARGET_PC_PING_URL=${TARGET_PC_PING_URL}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+    restart: unless-stopped

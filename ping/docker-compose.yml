@@ -1,0 +1,6 @@
+services:
+  ping-server:
+    build: .
+    ports:
+      - "7199:7199"
+    restart: unless-stopped
