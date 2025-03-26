@@ -8,6 +8,11 @@ The system consists of:
 - An ESP32 microcontroller that interfaces with the PC's motherboard power button pins with a MOSSFET
 - A ping service running on the target PC for status monitoring
 
+### Hardware Components
+The ESP32 board is connected to the PC's power button pins through a MOSFET module, which acts as a solid-state relay. This allows the web interface to safely control the PC's power state.
+
+The MOSFET module is connected to GPIO 3 on the ESP32. For detailed wiring instructions and pin configuration, see the [firmware documentation](firmware/README.md).
+
 ![Hardware Setup](hardware.jpg)
 
 ## Project Structure
