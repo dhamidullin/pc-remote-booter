@@ -11,4 +11,4 @@ ESP32-C3 firmware that controls PC power by triggering motherboard power pins. T
 
 ## Pin Configuration
 - MOSFET Module: GPIO 3 (for web-based control)
-- Power Button: GPIO 2 (for physical button control, optional)
+- Power Button: GPIO 2 (physical button input, optional)
