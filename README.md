@@ -2,6 +2,18 @@
 
 This is my personal project I use to remotely boot or turn off my PC by triggering the power pins of my PC's motherboard with a ESP32 board and a simple WEB interface built with Next.js. It's deployed on my home server. I post it here as a part of my portfolio. Feel free to use it though if you find it usefull.
 
+## Screenshots
+
+### Desktop View
+The main dashboard interface in desktop view shows a clean, dark-themed layout with status cards for both PC and ESP32 device. The cards display online/offline status with visual indicators and refresh buttons. Power control buttons are positioned at the bottom. A decorative crown emoji adds a playful touch above the interface.
+
+![Desktop Interface](screenshot-desktop.png)
+
+### Mobile View
+The mobile interface maintains the same functionality while adapting to smaller screens. Status cards stack vertically with their contents aligned centrally for better readability on mobile devices.
+
+![Mobile Interface](screenshot-mobile.png)
+
 ## Project Overview
 The system consists of:
 - A Next.js web interface
@@ -22,8 +34,6 @@ The project is split into three main components:
    - Next.js-based web application for controlling the PC
    - Provides a user-friendly interface for power management
    - Handles authentication and user interactions
-
-   ![Web Interface](screenshot.png)
 
 2. **ESP32 Firmware** (`/esp32`)
    - Microcontroller code that interfaces with the PC's power pins
