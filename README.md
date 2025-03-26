@@ -1,12 +1,14 @@
 # NetControl
 
-This is my personal project I use to remotely boot or turn off my PC by triggering the power pins of my PC's motherboard with a ESP32 board and a simple WEB interface built with Next.js. It's deployed on my home server. I post it here as a part of my portfolio.
+This is my personal project I use to remotely boot or turn off my PC by triggering the power pins of my PC's motherboard with a ESP32 board and a simple WEB interface built with Next.js. It's deployed on my home server. I post it here as a part of my portfolio. Feel free to use it though if you find it usefull.
 
 ## Project Overview
 The system consists of:
 - A Next.js web interface
 - An ESP32 microcontroller that interfaces with the PC's motherboard power button pins with a MOSSFET
 - A ping service running on the target PC for status monitoring
+
+![Hardware Setup](hardware.jpg)
 
 ## Project Structure
 The project is split into three main components:

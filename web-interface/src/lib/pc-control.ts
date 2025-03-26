@@ -1,13 +1,13 @@
 import axios from 'axios'
 
 const esp32BooterBaseUrl = process.env.ESP32_BOOTER_BASE_URL as string
-const wallPcPingUrl = process.env.TARGET_PC_PING_URL as string
+const targetPcPingUrl = process.env.TARGET_PC_PING_URL as string
 
 if (!esp32BooterBaseUrl) {
   throw new Error('ESP32_BOOTER_BASE_URL is not set')
 }
 
-if (!wallPcPingUrl) {
+if (!targetPcPingUrl) {
   throw new Error('TARGET_PC_PING_URL is not set')
 }
 
@@ -26,7 +26,7 @@ export async function getHello() {
 
 export async function pingPc() {
   try {
-    const res = await axios.get(wallPcPingUrl)
+    const res = await axios.get(targetPcPingUrl)
     return res.data === 'pong'
   } catch (err) {
     return false
