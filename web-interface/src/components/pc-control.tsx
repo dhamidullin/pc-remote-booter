@@ -14,6 +14,26 @@ const ButtonContainer = styled.div`
   margin-top: 0.5rem;
 `
 
+const Crown = styled.div`
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 0.5rem);
+  transform: translateX(-50%);
+  font-size: 3rem;
+  text-align: center;
+  user-select: none;
+  z-index: 1;
+  filter: 
+    drop-shadow(0 0 10px rgba(255, 223, 0, 0.3))
+    drop-shadow(0 0 15px rgba(255, 215, 0, 0.2))
+    drop-shadow(0 0 20px rgba(255, 200, 0, 0.1));
+  
+  @media (max-width: 480px) {
+    font-size: 2.5rem;
+    bottom: calc(100% + 0.375rem);
+  }
+`
+
 const RootContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -41,6 +61,7 @@ const RootContainer = styled.div`
 `
 
 const ContentContainer = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -110,6 +131,7 @@ export default function PcControl() {
   return (
     <RootContainer data-testid="pc-control-root">
       <ContentContainer data-testid="pc-control-content">
+        <Crown data-testid="pc-control-crown">👑</Crown>
         <StatusCard
           title="PC Status"
           isOnline={pcStatus}

@@ -24,6 +24,12 @@ const StyledCardContent = styled(CardContent)`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
 `
 
 const LeftContent = styled.div`
@@ -33,12 +39,21 @@ const LeftContent = styled.div`
   flex-shrink: 0;
   padding-right: 1rem;
   white-space: nowrap;
+
+  @media (max-width: 480px) {
+    padding-right: 0;
+    text-align: center;
+  }
 `
 
 const RightContent = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+
+  @media (max-width: 480px) {
+    justify-content: center;
+  }
 `
 
 const StatusIndicator = styled.span<{ isOnline: boolean }>`
@@ -97,6 +112,7 @@ export function StatusCard({ title, isOnline, isLoading, onRefresh }: StatusCard
 
         <RightContent data-testid="status-card-right">
           {statusIndicator}
+
           <StyledFancyButton onClick={onRefresh} disabled={isLoading} data-testid="status-card-refresh">
             🔄
           </StyledFancyButton>
