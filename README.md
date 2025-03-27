@@ -46,9 +46,11 @@ The project is split into three main components:
    - Provides online/offline status to the web interface
 
 ## TODO
-- Implement session access and refresh tokens for better security
-- Improve login view with better styling and user feedback
-- Add tests
+Estimated development time: 12-17 hours
+
+- Implement session access and refresh tokens for better security (4-6h)
+- Add tests (6-8h)
+- Improve login view with better styling and user feedback (2-3h)
 
 ## License
 I built this project for personal use and share it as part of my portfolio. Feel free to use it. It's provided "as is" without any warranty.
