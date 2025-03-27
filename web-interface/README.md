@@ -38,14 +38,6 @@ To stop the service:
 docker compose down
 ```
 
-### Service URLs
-- **Frontend:** [http://localhost:9064](http://localhost:9064)
-
-## Debugging
-- Check container status: `docker compose ps`
-- View logs: `docker compose logs -f frontend`
-- Access container shell: `docker exec -it <container_id> sh`
-
 ## Environment Setup
 The web interface uses environment variables for configuration. Create a `.env` file in the root directory with the following variables:
 - `JWT_SECRET`: Secret key for JWT token generation
