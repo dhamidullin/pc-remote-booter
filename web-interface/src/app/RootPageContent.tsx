@@ -1,10 +1,11 @@
-"use client"
+'use client'
 
-import { FancyButton } from "@/components/ui-custom/fancy-button"
-import { forceShutOffPC, turnOnPC, pingTargetPC, pingEsp32 } from "@/lib/api"
-import { useState, useEffect } from "react"
-import styled from "styled-components"
-import { StatusCard } from "./status-card"
+import { FancyButton } from '@/components/ui-custom/fancy-button'
+import { forceShutOffPC, turnOnPC, pingTargetPC, pingEsp32 } from '@/lib/api'
+import { useState, useEffect } from 'react'
+import styled from 'styled-components'
+import { StatusCard } from '../components/status-card'
+import useAuthRedirect from '@/hooks/useAuthRedirect'
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -85,6 +86,8 @@ export default function PcControl() {
   const [isTurnOnLoading, setIsTurnOnLoading] = useState(false)
   const [isTurnOffLoading, setIsTurnOffLoading] = useState(false)
 
+  const canRender = useAuthRedirect('/login', 'when-unauthed')
+
   const checkPcStatus = async () => {
     setIsLoading(true)
     try {
@@ -128,10 +131,15 @@ export default function PcControl() {
     checkEsp32Status()
   }, [])
 
+  if (!canRender) {
+    return null
+  }
+
   return (
     <RootContainer data-testid="pc-control-root">
       <ContentContainer data-testid="pc-control-content">
         <Crown data-testid="pc-control-crown">👑</Crown>
+
         <StatusCard
           title="PC Status"
           isOnline={pcStatus}

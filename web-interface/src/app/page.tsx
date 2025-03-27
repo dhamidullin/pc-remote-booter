@@ -1,4 +1,4 @@
-import PcControl from "@/components/pc-control"
+import PcControl from "@/app/RootPageContent"
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {

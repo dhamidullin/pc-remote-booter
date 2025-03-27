@@ -6,11 +6,13 @@ import ms from 'ms'
 
 interface AuthContextInterface {
   isAuthenticated: boolean
+  loading: boolean
   handleAuthState: () => Promise<void>
 }
 
 const AuthContext = createContext<AuthContextInterface>({
   isAuthenticated: false,
+  loading: true,
   handleAuthState: async () => { }
 })
 
@@ -20,13 +22,12 @@ const refreshAndSetToken = async (): Promise<void> => {
 }
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [loading, setLoading] = useState(true)
+  const [firstLoading, setFirstLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const tokenRefreshInterval = useRef<NodeJS.Timeout | null>(null)
-  const router = useRouter()
-  const pathname = usePathname()
 
-  // triues to call a token refresh endpoint to initialize the auth state of the app
+  // try to call a token refresh endpoint to initialize the auth state of the app
   const handleAuthState = async () => {
     try {
       await refreshAndSetToken()
@@ -35,26 +36,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setIsAuthenticated(false)
     } finally {
       setLoading(false)
+      setFirstLoading(false)
     }
   }
 
+  // check auth state on mount
   useEffect(() => {
     handleAuthState()
   }, [])
-
-  useEffect(() => {
-    if (loading) return
-
-    if (isAuthenticated && pathname === '/login') {
-      console.log('pushing to /')
-      router.push('/')
-    }
-
-    if (!isAuthenticated && pathname === '/') {
-      console.log('pushing to /login')
-      router.push('/login')
-    }
-  }, [loading, isAuthenticated, router])
 
   // start/stop token refresh every minute
   useEffect(() => {
@@ -75,12 +64,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [loading, isAuthenticated])
 
-  if (loading) {
+  if (firstLoading) {
     return <div>Loading...</div>
   }
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, handleAuthState }}>
+    <AuthContext.Provider value={{ isAuthenticated, loading, handleAuthState }}>
       {children}
     </AuthContext.Provider>
   )
