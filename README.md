@@ -51,7 +51,6 @@ The project is split into three main components:
 ## TODO
 - Improve login view with better styling and user feedback
 - Add tests
-- add metadata to pages
 
 ## License
 I built this project for personal use and share it as part of my portfolio. Feel free to use it. It's provided "as is" without any warranty.
