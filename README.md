@@ -46,8 +46,8 @@ The project is split into three main components:
    - Provides online/offline status to the web interface
 
 ## TODO
-- Improve dashboard with better UI/UX and more features
 - Implement session access and refresh tokens for better security
+- Improve login view with better styling and user feedback
 - Add tests
 
 ## License
