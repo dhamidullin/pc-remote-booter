@@ -14,9 +14,21 @@ export const verifyJWT = (handler: (req: NextRequest) => Promise<Response>) => {
     try {
       userData = decodeJwtToken(actualToken)
     } catch (error) {
-      console.error('Error verifying token:', error)
-      return new Response(JSON.stringify({ message: 'Invalid or missing token' }), {
-        status: 401,
+      if (error instanceof Error) {
+        const forwardableErrors = ['Invalid token']
+
+        const message = forwardableErrors.includes(error.message)
+          ? error.message
+          : 'Invalid or missing token'
+
+        return new Response(JSON.stringify({ message }), {
+          status: 401,
+          headers: { 'Content-Type': 'application/json' }
+        })
+      }
+
+      return new Response('', {
+        status: 500,
         headers: { 'Content-Type': 'application/json' }
       })
     }

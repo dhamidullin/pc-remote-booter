@@ -20,6 +20,9 @@ The system consists of:
 - An ESP32 microcontroller that interfaces with the PC's motherboard power button pins with a MOSSFET
 - A ping service running on the target PC for status monitoring
 
+### Authentication
+The web interface now includes session-based authentication, enhancing security by managing user sessions with refresh tokens stored in the OS temporary folder. This ensures that user sessions are maintained securely and efficiently.
+
 ### Hardware Components
 The ESP32 board is connected to the PC's power button pins through a MOSFET module, which acts as a solid-state relay. This allows the web interface to safely control the PC's power state.
 
@@ -46,7 +49,6 @@ The project is split into three main components:
    - Provides online/offline status to the web interface
 
 ## TODO
-- Implement session access and refresh tokens for better security
 - Improve login view with better styling and user feedback
 - Add tests
 

@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server'
 import { createJwtToken } from '@/lib/jwt'
+import { createRefreshTokenCookie, createSession, SESSION_TOKEN_COOKIE_NAME } from '@/lib/session'
+import ms from 'ms'
 
 if (!process.env.ADMIN_PASSWORD) {
   throw new Error('ADMIN_PASSWORD environment variable is not set')
@@ -19,9 +21,15 @@ export async function POST(request: Request) {
       )
     }
 
-    const token = createJwtToken({ sub: 'user' })
+    const sessionTtl = ms('1 week')
+    const refreshToken = createSession(sessionTtl)
+    const secure = process.env.NODE_ENV !== 'development' ? 'Secure; ' : ''
 
-    return NextResponse.json({ access_token: token })
+    return NextResponse.json({ success: true }, {
+      headers: {
+        'Set-Cookie': createRefreshTokenCookie(refreshToken)
+      }
+    })
   } catch (error) {
     console.error(error)
 

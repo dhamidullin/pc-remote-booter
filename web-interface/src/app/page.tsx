@@ -1,15 +1,12 @@
-import CheckTokenBeforeRender from "@/components/auth/CheckTokenBeforeRender"
-import LoginController from "@/components/auth/LoginController"
-import PcControl from "@/components/pc-control"
+'use client'
 
-export default function Home() {
+import PcControl from "@/components/pc-control"
+import withAuthCheck from "@/hoc/withAuthCheck"
+
+function Dashboard() {
   return (
-    <>
-      <CheckTokenBeforeRender>
-        <LoginController>
-          <PcControl />
-        </LoginController>
-      </CheckTokenBeforeRender>
-    </>
+    <PcControl />
   )
 }
+
+export default withAuthCheck(Dashboard, true, '/login')

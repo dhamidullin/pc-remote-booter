@@ -5,9 +5,11 @@ const apiClient = axios.create()
 
 apiClient.interceptors.request.use(config => {
   const token = getAuthToken()
+
   if (token) {
     config.headers.Authorization = `Bearer ${token}`
   }
+
   return config
 })
 
@@ -26,11 +28,16 @@ export const pingEsp32 = async (): Promise<{ online: boolean }> => {
 }
 
 export const login = async (password: string) => {
-  const res = await apiClient.post<{ access_token: string }>('/api/auth/login', { password })
+  const res = await apiClient.post<{ success: boolean }>('/api/auth/login', { password })
   return res.data
 }
 
 export const getMe = async (): Promise<{ user: any }> => {
   const res = await apiClient.get<{ user: any }>('/api/auth/me')
+  return res.data
+}
+
+export const refreshToken = async (): Promise<{ accessToken: string }> => {
+  const res = await apiClient.get<{ accessToken: string }>('/api/auth/refresh-token')
   return res.data
 }

@@ -1,5 +1,11 @@
 import jwt from 'jsonwebtoken'
 
+const JWT_SECRET = process.env.JWT_SECRET
+
+if (!JWT_SECRET) {
+  throw new Error('JWT_SECRET environment variable is not defined');
+}
+
 interface JwtTokenCreationPayload {
   sub: 'user';
   [key: string]: any;
@@ -11,22 +17,13 @@ export type JwtTokenPayload = JwtTokenCreationPayload & {
 }
 
 export const createJwtToken = (payload: JwtTokenCreationPayload): string => {
-  if (!process.env.JWT_SECRET) {
-    throw new Error('JWT_SECRET environment variable is not defined');
-  }
-
-  return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '30d' })
+  return jwt.sign(payload, JWT_SECRET, { expiresIn: '5m' })
 }
 
 export const decodeJwtToken = (token: string): JwtTokenPayload => {
-  if (!process.env.JWT_SECRET) {
-    throw new Error('JWT_SECRET environment variable is not defined');
-  }
-
   try {
-    return jwt.verify(token, process.env.JWT_SECRET) as JwtTokenPayload
+    return jwt.verify(token, JWT_SECRET) as JwtTokenPayload
   } catch (error) {
-    console.error('Invalid token error', error)
     throw new Error('Invalid token')
   }
 }

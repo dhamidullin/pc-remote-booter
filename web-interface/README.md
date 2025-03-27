@@ -4,7 +4,6 @@ The web interface component of NetControl, built with Next.js. This provides a u
 
 ## Features
 - Simple and intuitive web interface for remote PC control
-- Secure authentication system to prevent unauthorized access
 - Real-time status monitoring of the target PC
 - Environment-based configuration for flexible setup
 
@@ -58,5 +57,5 @@ The web interface uses environment variables for configuration. Create a `.env` 
 ## Technologies Used
 - Next.js
 - TypeScript
-- JWT Authentication
+- JWT access token + refresh token authentication
 - Environment-based Configuration 
