@@ -1,5 +1,5 @@
 import { createJwtToken } from '@/lib/jwt';
-import { createRefreshTokenCookie, SESSION_TOKEN_COOKIE_NAME, updateSession, getRefreshTokenFromCookies } from '@/lib/session'
+import { createRefreshTokenCookie, updateSession, getRefreshTokenFromCookies } from '@/lib/session'
 import ms from 'ms';
 import { NextResponse } from 'next/server'
 

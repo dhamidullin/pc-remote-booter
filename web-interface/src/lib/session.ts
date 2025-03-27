@@ -75,3 +75,21 @@ export function getRefreshTokenFromCookies(cookies: string | null): string | nul
     .find(cookie => cookie.startsWith(`${SESSION_TOKEN_COOKIE_NAME}=`))
     ?.split('=')[1] || null;
 }
+
+// Function to verify if a session exists by its ID
+export function verifySession(refreshToken: string | null): boolean {
+  if (!refreshToken) {
+    return false;
+  }
+
+  const sessionFilePath = path.join(sessionDir, `${refreshToken}.json`);
+
+  if (fs.existsSync(sessionFilePath)) {
+    const sessionData = JSON.parse(fs.readFileSync(sessionFilePath, 'utf-8'));
+    const refreshTokenValidUntil = new Date(sessionData.refreshTokenValidUntil);
+
+    return refreshTokenValidUntil > new Date();
+  }
+
+  return false;
+}

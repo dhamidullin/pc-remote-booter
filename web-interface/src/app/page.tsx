@@ -1,12 +1,13 @@
-'use client'
-
 import PcControl from "@/components/pc-control"
-import withAuthCheck from "@/hoc/withAuthCheck"
+import { Metadata } from 'next'
 
-function Dashboard() {
+export const metadata: Metadata = {
+  title: 'NetControl Dashboard',
+  description: 'Manage and control your PC remotely with NetControl.',
+}
+
+export default function Page() {
   return (
     <PcControl />
   )
 }
-
-export default withAuthCheck(Dashboard, true, '/login')
