@@ -12,9 +12,11 @@ const withAuthOnly = <T extends object>(WrappedComponent: React.ComponentType<T>
       return null
     }
 
-    return <div data-testid="auth-only-wrapper">
-      <WrappedComponent {...props} />
-    </div>
+    return (
+      <div data-testid="auth-only-wrapper">
+        <WrappedComponent {...props} />
+      </div>
+    )
   }
 }
 
